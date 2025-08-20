@@ -9,8 +9,10 @@ public class Klalopz {
         String introMessage = "Hello! I'm " + botName + "!\nWhat can I do for you today?";
         String closingMessage = "Bye-bye, hope to see you soon!";
         Scanner scanner = new Scanner(System.in);
-        String currInput;
-        List<String> taskStorage = new ArrayList<>(100);
+        String currInput, instruction, otherData;
+        int index;
+        Task currTask;
+        List<Task> taskStorage = new ArrayList<>(100);
 
         System.out.println(lineGap);
         System.out.println(introMessage);
@@ -24,20 +26,50 @@ public class Klalopz {
             if (currInput.equalsIgnoreCase("bye")) {
                 break;
             }
-            switch(currInput.toLowerCase()) {
+
+            String[] splitInput = currInput.split(" ", 2);
+            if (splitInput.length > 1) {
+                instruction = splitInput[0];
+                otherData = splitInput[1];
+            } else {
+                instruction = currInput;
+                otherData = "";
+            }
+
+            switch(instruction.toLowerCase()) {
                 case "list":
                     if (taskStorage.isEmpty()) {
                         System.out.println("Nothing here yet :)");
                         break;
                     }
                     for (int i = 0; i < taskStorage.size(); i++) {
-                        String currItemString = (i + 1) + ". " + taskStorage.get(i);
+                        currTask = taskStorage.get(i);
+                        String currItemString = (i + 1) + ". [" + currTask.getCompletedLogo() + "] "
+                                                + currTask.getDetails();
                         System.out.println(currItemString);
                     }
                     System.out.println(lineGap);
                     break;
-                default:
-                    taskStorage.add(currInput);
+
+                case "mark":
+                    index = Integer.parseInt(otherData) - 1;
+                    currTask = taskStorage.get(index);
+                    currTask.setCompleted(Boolean.TRUE);
+
+                    System.out.println("Well done! I have marked this task:\n" + "[X] " + currTask.getDetails());
+                    System.out.println(lineGap);
+                    break;
+
+                case "unmark":
+                    index = Integer.parseInt(otherData) - 1;
+                    currTask = taskStorage.get(index);
+                    currTask.setCompleted(Boolean.FALSE);
+
+                    System.out.println("Understood! I have unmarked this task:\n" + "[ ] " + currTask.getDetails());
+                    System.out.println(lineGap);
+                    break;
+                default: // later change into error handling
+                    taskStorage.add(new Task(currInput));
                     System.out.println("Added item : " + currInput);
                     System.out.println(lineGap);
             }
