@@ -3,7 +3,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Klalopz {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws KlalopzException {
         String botName = "Klalopz";
         String lineGap = "____________________________________________________________";
         String introMessage = "Hello! I'm " + botName + "!\nWhat can I do for you today?";
@@ -41,8 +41,7 @@ public class Klalopz {
             switch(instruction.toLowerCase()) {
                 case "list":
                     if (taskStorage.isEmpty()) {
-                        System.out.println("Nothing here yet :)");
-                        break;
+                        throw new KlalopzException("HEY! You haven't added anything yet!");
                     }
                     System.out.println("No | Task type | Completed? | Title");
                     System.out.println("-----------------------------------");
@@ -56,7 +55,16 @@ public class Klalopz {
                     break;
 
                 case "mark":
+                    if (otherData.isEmpty()) {
+                        throw new KlalopzException("Tell me which task to mark");
+                    }
+
                     index = Integer.parseInt(otherData) - 1;
+
+                    if (index < 0 || index >= taskStorage.size()) {
+                        throw new KlalopzException("What even is that task??");
+                    }
+
                     currTask = taskStorage.get(index);
                     currTask.setCompleted(Boolean.TRUE);
 
@@ -65,15 +73,34 @@ public class Klalopz {
                     break;
 
                 case "unmark":
+                    if (otherData.isEmpty()) {
+                        throw new KlalopzException("Tell me which task to unmark");
+                    }
+
                     index = Integer.parseInt(otherData) - 1;
+
+                    if (index < 0 || index >= taskStorage.size()) {
+                        throw new KlalopzException("What even is that task??");
+                    }
+
                     currTask = taskStorage.get(index);
                     currTask.setCompleted(Boolean.FALSE);
 
                     System.out.println("Understood! I have unmarked this task:\n" + "[ ] " + currTask.getDetails());
                     System.out.println(lineGap);
                     break;
+
                 case "deadline":
-                    tempStorage = otherData.split("/");
+                    if (otherData.isEmpty()) {
+                        throw new KlalopzException("I need more info about this task. Follow the format pls");
+                    }
+
+                    tempStorage = otherData.split("/", 2);
+
+                    if (tempStorage.length < 2) {
+                        throw new KlalopzException("FOLLOW THE FORMAT!!!!");
+                    }
+
                     details = tempStorage[0];
                     startDate = tempStorage[1];
                     currTask = new Deadline(details, startDate);
@@ -82,8 +109,15 @@ public class Klalopz {
                     getTaskCount(taskStorage);
                     System.out.println(lineGap);
                     break;
+
                 case "event":
-                    tempStorage = otherData.split("/");
+                    if (otherData.isEmpty()) {
+                        throw new KlalopzException("Oi what is this event, so sad");
+                    }
+                    tempStorage = otherData.split("/", 3);
+                    if (tempStorage.length < 3) {
+                        throw new KlalopzException("FOLLOW THE FORMAT PLSSSSS");
+                    }
                     details = tempStorage[0];
                     startDate = tempStorage[1];
                     endDate = tempStorage[2];
@@ -93,21 +127,31 @@ public class Klalopz {
                     getTaskCount(taskStorage);
                     System.out.println(lineGap);
                     break;
+
                 case "todo":
+                    if (otherData.isEmpty()) {
+                        throw new KlalopzException("Heh, idk what you need to do");
+                    }
+
                     currTask = new ToDo(otherData);
                     taskStorage.add(currTask);
                     System.out.println(addedTask + " \n" + currTask);
                     getTaskCount(taskStorage);
                     System.out.println(lineGap);
                     break;
-                default: // later change into error handling
-                    taskStorage.add(new Task(currInput));
-                    System.out.println("Added item : " + currInput);
+
+                case "delete", "remove":
+                    index = Integer.parseInt(otherData) - 1;
+                    currTask = taskStorage.get(index);
+                    taskStorage.remove(index);
+                    System.out.println("Removed item : " + currTask);
                     getTaskCount(taskStorage);
                     System.out.println(lineGap);
+                    break;
+
+                default:
+                    throw new KlalopzException("Typo ma?");
             }
-
-
         }
         System.out.println(closingMessage);
         System.out.println(lineGap);
