@@ -8,7 +8,11 @@ public class Task {
     }
 
     public String getCompletedLogo() {
-        return isCompleted ? "X" : " ";
+        return isCompleted ? "[X]" : "[ ]";
+    }
+
+    public String getTaskLogo() {
+        return "[?]";
     }
     public void setDetails(String details) {
         this.details = details;
@@ -24,5 +28,10 @@ public class Task {
 
     public boolean getCompleted() {
         return this.isCompleted;
+    }
+
+    @Override
+    public String toString() {
+        return this.getTaskLogo() + this.getCompletedLogo() + " " + this.getDetails();
     }
 }

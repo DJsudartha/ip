@@ -7,9 +7,11 @@ public class Klalopz {
         String botName = "Klalopz";
         String lineGap = "____________________________________________________________";
         String introMessage = "Hello! I'm " + botName + "!\nWhat can I do for you today?";
+        String addedTask = "Got it. I've added this task: ";
         String closingMessage = "Bye-bye, hope to see you soon!";
         Scanner scanner = new Scanner(System.in);
-        String currInput, instruction, otherData;
+        String currInput, instruction, otherData, details, startDate, endDate;
+        String[] tempStorage;
         int index;
         Task currTask;
         List<Task> taskStorage = new ArrayList<>(100);
@@ -42,10 +44,12 @@ public class Klalopz {
                         System.out.println("Nothing here yet :)");
                         break;
                     }
+                    System.out.println("No | Task type | Completed? | Title");
+                    System.out.println("-----------------------------------");
+                    // Formatting TO DO
                     for (int i = 0; i < taskStorage.size(); i++) {
                         currTask = taskStorage.get(i);
-                        String currItemString = (i + 1) + ". [" + currTask.getCompletedLogo() + "] "
-                                                + currTask.getDetails();
+                        String currItemString = (i + 1) + ". " + currTask.toString();
                         System.out.println(currItemString);
                     }
                     System.out.println(lineGap);
@@ -68,9 +72,38 @@ public class Klalopz {
                     System.out.println("Understood! I have unmarked this task:\n" + "[ ] " + currTask.getDetails());
                     System.out.println(lineGap);
                     break;
+                case "deadline":
+                    tempStorage = otherData.split("/");
+                    details = tempStorage[0];
+                    startDate = tempStorage[1];
+                    currTask = new Deadline(details, startDate);
+                    taskStorage.add(currTask);
+                    System.out.println(addedTask + " \n" + currTask);
+                    getTaskCount(taskStorage);
+                    System.out.println(lineGap);
+                    break;
+                case "event":
+                    tempStorage = otherData.split("/");
+                    details = tempStorage[0];
+                    startDate = tempStorage[1];
+                    endDate = tempStorage[2];
+                    currTask = new Event(details, startDate, endDate);
+                    taskStorage.add(currTask);
+                    System.out.println(addedTask + " \n" + currTask);
+                    getTaskCount(taskStorage);
+                    System.out.println(lineGap);
+                    break;
+                case "todo":
+                    currTask = new ToDo(otherData);
+                    taskStorage.add(currTask);
+                    System.out.println(addedTask + " \n" + currTask);
+                    getTaskCount(taskStorage);
+                    System.out.println(lineGap);
+                    break;
                 default: // later change into error handling
                     taskStorage.add(new Task(currInput));
                     System.out.println("Added item : " + currInput);
+                    getTaskCount(taskStorage);
                     System.out.println(lineGap);
             }
 
@@ -79,7 +112,10 @@ public class Klalopz {
         System.out.println(closingMessage);
         System.out.println(lineGap);
 
+    }
 
-
+    public static void getTaskCount(List<Task> storage) {
+        int count = storage.size();
+        System.out.println("Now you have " + count + " tasks in the list.");
     }
 }
