@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Klalopz {
@@ -8,6 +10,7 @@ public class Klalopz {
         String closingMessage = "Bye-bye, hope to see you soon!";
         Scanner scanner = new Scanner(System.in);
         String currInput;
+        List<String> taskStorage = new ArrayList<>(100);
 
         System.out.println(lineGap);
         System.out.println(introMessage);
@@ -21,8 +24,23 @@ public class Klalopz {
             if (currInput.equalsIgnoreCase("bye")) {
                 break;
             }
-            System.out.println(currInput);
-            System.out.println(lineGap);
+            switch(currInput.toLowerCase()) {
+                case "list":
+                    if (taskStorage.isEmpty()) {
+                        System.out.println("Nothing here yet :)");
+                        break;
+                    }
+                    for (int i = 0; i < taskStorage.size(); i++) {
+                        String currItemString = (i + 1) + ". " + taskStorage.get(i);
+                        System.out.println(currItemString);
+                    }
+                    System.out.println(lineGap);
+                    break;
+                default:
+                    taskStorage.add(currInput);
+                    System.out.println("Added item : " + currInput);
+                    System.out.println(lineGap);
+            }
 
 
         }
