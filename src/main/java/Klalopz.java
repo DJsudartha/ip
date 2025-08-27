@@ -1,5 +1,7 @@
 import java.io.FileWriter;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -11,6 +13,7 @@ public class Klalopz {
     private static final String introMessage = "Hello! I'm " + botName + "!\nWhat can I do for you today?";
     private static final String addedTask = "Got it. I've added this task: ";
     private static final String closingMessage = "Bye-bye, hope to see you soon!";
+    private static final DateTimeFormatter inputDateFormat = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
     public static void getTaskCount(List<Task> storage) {
         int count = storage.size();
@@ -22,7 +25,8 @@ public class Klalopz {
     }
     public static void main(String[] args) throws KlalopzException {
         Scanner scanner = new Scanner(System.in);
-        String currInput, instruction, otherData, details, startDate, endDate;
+        String currInput, instruction, otherData, details;
+        LocalDate startDate, endDate;
         DataStorage dataStorage = new DataStorage();
         String[] tempStorage;
         int index;
@@ -118,7 +122,7 @@ public class Klalopz {
                     }
 
                     details = tempStorage[0];
-                    startDate = tempStorage[1];
+                    startDate = LocalDate.parse(tempStorage[1].trim(), inputDateFormat);
                     currTask = new Deadline(details, Boolean.FALSE, startDate);
                     taskStorage.add(currTask);
                     dataStorage.save(taskStorage);
@@ -136,8 +140,8 @@ public class Klalopz {
                         throw new KlalopzException("FOLLOW THE FORMAT PLSSSSS");
                     }
                     details = tempStorage[0];
-                    startDate = tempStorage[1];
-                    endDate = tempStorage[2];
+                    startDate = LocalDate.parse(tempStorage[1].trim(), inputDateFormat);
+                    endDate = LocalDate.parse(tempStorage[2].trim(), inputDateFormat);
                     currTask = new Event(details, Boolean.FALSE, startDate, endDate);
                     taskStorage.add(currTask);
                     dataStorage.save(taskStorage);

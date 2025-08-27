@@ -1,8 +1,10 @@
+import java.time.LocalDate;
+
 public class Event extends Task {
 
-    private String startDate;
-    private String endDate;
-    public Event(String description, Boolean isCompleted, String startDate, String endDate) {
+    private LocalDate startDate;
+    private LocalDate endDate;
+    public Event(String description, Boolean isCompleted, LocalDate startDate, LocalDate endDate) {
         super(description, isCompleted);
         this.startDate = startDate;
         this.endDate = endDate;
@@ -16,7 +18,8 @@ public class Event extends Task {
     @Override
     public String toString() {
         return this.getTaskLogo() + this.getCompletedLogo() + " " + this.getDetails()
-                + " (from: " + this.getStartDate() + " to: " + this.getEndDate() + ")";
+                + " (from: " + this.getStartDate().format(Task.dateFormatter)
+                + " to: " + this.getEndDate().format(Task.dateFormatter) + ")";
     }
 
     @Override
@@ -26,19 +29,19 @@ public class Event extends Task {
     }
 
 
-    public String getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(String startDate) {
+    public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
     }
 
-    public String getEndDate() {
+    public LocalDate getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(String endDate) {
+    public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
 }
