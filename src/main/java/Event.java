@@ -2,8 +2,8 @@ public class Event extends Task {
 
     private String startDate;
     private String endDate;
-    public Event(String description, String startDate, String endDate) {
-        super(description);
+    public Event(String description, Boolean isCompleted, String startDate, String endDate) {
+        super(description, isCompleted);
         this.startDate = startDate;
         this.endDate = endDate;
     }
@@ -18,6 +18,13 @@ public class Event extends Task {
         return this.getTaskLogo() + this.getCompletedLogo() + " " + this.getDetails()
                 + " (from: " + this.getStartDate() + " to: " + this.getEndDate() + ")";
     }
+
+    @Override
+    public String serialize() {
+        return this.getTaskLogo() + " | "  + this.getDetails() + " | " +
+                this.getCompleted() + " | " + this.getStartDate() + " | " + this.getEndDate();
+    }
+
 
     public String getStartDate() {
         return startDate;

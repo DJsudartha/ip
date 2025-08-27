@@ -1,7 +1,7 @@
 public class Deadline extends Task {
     private String dueDate;
-    public Deadline(String description, String dueDate) {
-        super(description);
+    public Deadline(String description, Boolean isCompleted, String dueDate) {
+        super(description, isCompleted);
         this.dueDate = dueDate;
     }
 
@@ -14,6 +14,12 @@ public class Deadline extends Task {
     public String toString() {
         return this.getTaskLogo() + this.getCompletedLogo() + " " + this.getDetails()
                 + " (by: " + getDueDate() + ")";
+    }
+
+    @Override
+    public String serialize() {
+        return this.getTaskLogo() + " | "  + this.getDetails() + " | " +
+                this.getCompleted() + " | " + this.getDueDate();
     }
     public void setDueDate(String dueDate) {
         this.dueDate = dueDate;
