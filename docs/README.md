@@ -1,4 +1,4 @@
-# Klalopz User Guide
+# Klalopz.Klalopz User Guide
 
 // Update the title above to match the actual product name
 

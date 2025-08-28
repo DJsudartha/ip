@@ -1,5 +1,13 @@
+package Klalopz.Instructions;
+
+import Klalopz.Exceptions.KlalopzException;
+import Klalopz.Storage.DataStorage;
+import Klalopz.Tasks.Event;
+import Klalopz.Tasks.Task;
+import Klalopz.Tasks.TaskList;
+import Klalopz.Ui.TextUi;
+
 import java.time.LocalDate;
-import java.util.List;
 
 public class EventInstruction implements Instruction {
     public String arguments;
@@ -16,7 +24,7 @@ public class EventInstruction implements Instruction {
         this.startDate = LocalDate.parse(parts[1].trim(), inputDateFormat);
         this.endDate = LocalDate.parse(parts[2].trim(), inputDateFormat);
     }
-    public void execute(TaskList storage, DataStorage dataStorage, Ui ui) throws KlalopzException {
+    public void execute(TaskList storage, DataStorage dataStorage, TextUi ui) throws KlalopzException {
         Task currTask = new Event(details, Boolean.FALSE, startDate, endDate);
         storage.addTask(currTask);
         dataStorage.save(storage);

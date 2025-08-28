@@ -1,5 +1,5 @@
 ____________________________________________________________
-Hello! I'm Klalopz!
+Hello! I'm Klalopz.Klalopz!
 What can I do for you today?
 ____________________________________________________________
 Your input:
@@ -22,7 +22,7 @@ Now you have 3 tasks in the list.
 ____________________________________________________________
 Your input:
 ____________________________________________________________
-No | Task type | Completed? | Title
+No | Klalopz.Tasks.Task type | Completed? | Title
 -----------------------------------
 1. [T][ ] borrow book
 2. [D][ ] return book  (by: Sunday)
@@ -40,7 +40,7 @@ Well done! I have marked this task:
 ____________________________________________________________
 Your input:
 ____________________________________________________________
-No | Task type | Completed? | Title
+No | Klalopz.Tasks.Task type | Completed? | Title
 -----------------------------------
 1. [T][X] borrow book
 2. [D][X] return book  (by: Sunday)
@@ -53,7 +53,7 @@ Understood! I have unmarked this task:
 ____________________________________________________________
 Your input:
 ____________________________________________________________
-No | Task type | Completed? | Title
+No | Klalopz.Tasks.Task type | Completed? | Title
 -----------------------------------
 1. [T][X] borrow book
 2. [D][ ] return book  (by: Sunday)

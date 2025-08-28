@@ -1,3 +1,5 @@
+package Klalopz.Tasks;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -51,7 +53,7 @@ public class Task {
             case "[D]": return new Deadline(detail, isCompleted, LocalDate.parse(splitData[3], Task.dateFormatter));
             case "[E]": return new Event(detail, isCompleted, LocalDate.parse(splitData[3], Task.dateFormatter),
                                          LocalDate.parse(splitData[4], Task.dateFormatter));
-            default: throw new IllegalArgumentException("Unknown Task detected");
+            default: throw new IllegalArgumentException("Unknown Klalopz.Tasks.Task detected");
         }
     }
 

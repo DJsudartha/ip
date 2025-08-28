@@ -1,3 +1,7 @@
+package Klalopz.Instructions;
+
+import Klalopz.Exceptions.KlalopzException;
+
 public class Parser {
 
     public static Instruction parse(String input) throws KlalopzException {

@@ -1,8 +1,15 @@
-    import java.time.LocalDate;
-    import java.time.format.DateTimeFormatter;
-    import java.util.List;
+package Klalopz.Instructions;
 
-    public class DeadlineInstruction implements Instruction {
+import Klalopz.Exceptions.KlalopzException;
+import Klalopz.Storage.DataStorage;
+import Klalopz.Tasks.Deadline;
+import Klalopz.Tasks.Task;
+import Klalopz.Tasks.TaskList;
+import Klalopz.Ui.TextUi;
+
+import java.time.LocalDate;
+
+public class DeadlineInstruction implements Instruction {
 
         public String arguments;
         private final LocalDate dueDate;
@@ -16,15 +23,15 @@
             }
 
             this.details = tempStorage[0].trim();
-            this.dueDate = LocalDate.parse(tempStorage[1].trim(), inputDateFormat);
+            this.dueDate = LocalDate.parse(tempStorage[1].trim(), Instruction.inputDateFormat);
         }
-        public void execute(TaskList storage, DataStorage dataStorage, Ui ui) throws KlalopzException {
+        public void execute(TaskList storage, DataStorage dataStorage, TextUi textUi) throws KlalopzException {
             Task currTask = new Deadline(details, Boolean.FALSE, dueDate);
             storage.addTask(currTask);
             dataStorage.save(storage);
-            ui.showMessage(addedTask + " \n" + currTask);
-            ui.showMessage("Now you have " + storage.size() + " tasks in the list.");
-            ui.showLine();
+            textUi.showMessage(Instruction.addedTask + " \n" + currTask);
+            textUi.showMessage("Now you have " + storage.size() + " tasks in the list.");
+            textUi.showLine();
         }
         @Override
         public boolean doIExit() {

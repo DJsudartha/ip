@@ -1,4 +1,10 @@
-import java.util.List;
+package Klalopz.Instructions;
+
+import Klalopz.Exceptions.KlalopzException;
+import Klalopz.Storage.DataStorage;
+import Klalopz.Tasks.Task;
+import Klalopz.Tasks.TaskList;
+import Klalopz.Ui.TextUi;
 
 public class DeleteInstruction implements Instruction {
     public String arguments;
@@ -10,7 +16,7 @@ public class DeleteInstruction implements Instruction {
         this.arguments = arguments;
         this.index = Integer.parseInt(arguments.trim()) - 1;
     }
-    public void execute(TaskList storage, DataStorage dataStorage, Ui ui) throws KlalopzException {
+    public void execute(TaskList storage, DataStorage dataStorage, TextUi ui) throws KlalopzException {
         if (index < 0 || index >= storage.size()) {
             throw new KlalopzException("Index is out of bounds");
         }

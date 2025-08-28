@@ -1,3 +1,5 @@
+package Klalopz.Exceptions;
+
 public class KlalopzException extends Exception {
     public KlalopzException(String message) {
         super(message);

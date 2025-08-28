@@ -1,3 +1,8 @@
+package Klalopz.Storage;
+
+import Klalopz.Tasks.TaskList;
+import Klalopz.Tasks.Task;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;

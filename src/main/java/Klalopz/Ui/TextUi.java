@@ -1,4 +1,8 @@
-public class Ui {
+package Klalopz.Ui;
+
+import Klalopz.Exceptions.KlalopzException;
+
+public class TextUi {
     public static final String botName = "Klalopz";
     public static final String lineGap = "____________________________________________________________";
     public static final String introMessage = "Hello! I'm " + botName + "!\nWhat can I do for you today?";
@@ -19,7 +23,7 @@ public class Ui {
         showLine();
     }
 
-    public void showHardError(String input) throws KlalopzException{
+    public void showHardError(String input) throws KlalopzException {
         System.out.println(errorMessage);
         throw new KlalopzException(input);
     }

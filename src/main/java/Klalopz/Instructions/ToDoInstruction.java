@@ -1,4 +1,11 @@
-import java.util.List;
+package Klalopz.Instructions;
+
+import Klalopz.Exceptions.KlalopzException;
+import Klalopz.Storage.DataStorage;
+import Klalopz.Tasks.Task;
+import Klalopz.Tasks.TaskList;
+import Klalopz.Tasks.ToDo;
+import Klalopz.Ui.TextUi;
 
 public class ToDoInstruction implements Instruction {
 
@@ -9,7 +16,7 @@ public class ToDoInstruction implements Instruction {
         }
         this.arguments = arguments.trim();
     }
-    public void execute(TaskList storage, DataStorage dataStorage, Ui ui) throws KlalopzException {
+    public void execute(TaskList storage, DataStorage dataStorage, TextUi ui) throws KlalopzException {
         Task currTask = new ToDo(arguments, Boolean.FALSE);
         storage.addTask(currTask);
         dataStorage.save(storage);
