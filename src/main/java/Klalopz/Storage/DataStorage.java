@@ -12,14 +12,17 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class DataStorage {
 
-    private final Path directoryPath;
     private final Path filePath;
-    public DataStorage() {
+    public DataStorage(Path path) {
         String home = System.getProperty("user.home");
-        this.directoryPath = Paths.get(home, "Klalopz", "data");
+        Path directoryPath;
+
+        directoryPath = Objects.requireNonNullElseGet(path, () -> Paths.get(home, "Klalopz", "data"));
+
         this.filePath = directoryPath.resolve("tasks.txt");
 
         try {

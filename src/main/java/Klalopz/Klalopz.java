@@ -16,7 +16,7 @@ public class Klalopz {
     private static final String botName = "Klalopz";
     public static void main(String[] args) throws KlalopzException {
         Scanner scanner = new Scanner(System.in);
-        DataStorage dataStorage = new DataStorage();
+        DataStorage dataStorage = new DataStorage(null);
         TextUi textUi = new TextUi();
         TaskList taskList = new TaskList(dataStorage.load());
 
