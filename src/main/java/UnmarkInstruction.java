@@ -13,7 +13,7 @@ public class UnmarkInstruction implements Instruction {
 
         this.index = Integer.parseInt(arguments.trim()) - 1;
     }
-    public void execute(List<Task> storage, DataStorage dataStorage) throws KlalopzException {
+    public void execute(List<Task> storage, DataStorage dataStorage, Ui ui) throws KlalopzException {
         if (index < 0 || index >= storage.size()) {
             throw new KlalopzException("What even is that task??");
         }
@@ -22,8 +22,8 @@ public class UnmarkInstruction implements Instruction {
         currTask.setCompleted(Boolean.FALSE);
         dataStorage.save(storage);
 
-        System.out.println("Understood! I have unmarked this task:\n" + "[ ] " + currTask.getDetails());
-        System.out.println(lineGap);
+        ui.showMessage("Understood! I have unmarked this task:\n" + "[ ] " + currTask.getDetails());
+        ui.showLine();
     }
     @Override
     public boolean doIExit() {

@@ -3,17 +3,17 @@ import java.util.List;
 public class ListInstruction implements Instruction {
 
     @Override
-    public void execute(List<Task> storage, DataStorage dataStorage) throws KlalopzException {
+    public void execute(List<Task> storage, DataStorage dataStorage, Ui ui) throws KlalopzException {
         if (storage.isEmpty()) {
-            System.out.println("HEY! You haven't added anything yet!");
+            ui.showMessage("HEY! You haven't added anything yet!");
         } else {
-            System.out.println("No | Task type | Completed? | Title");
-            System.out.println("-----------------------------------");
+            ui.showMessage("No | Task type | Completed? | Title");
+            ui.showMessage("-----------------------------------");
             // Formatting TO DO
             for (int i = 0; i < storage.size(); i++) {
                 Task currTask = storage.get(i);
-                System.out.println((i + 1) + ". " + currTask);
-                System.out.println(lineGap);
+                ui.showMessage((i + 1) + ". " + currTask);
+                ui.showLine();
             }
         }
     }

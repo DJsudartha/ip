@@ -9,13 +9,14 @@ public class ToDoInstruction implements Instruction {
         }
         this.arguments = arguments.trim();
     }
-    public void execute(List<Task> storage, DataStorage dataStorage) throws KlalopzException {
+    public void execute(List<Task> storage, DataStorage dataStorage, Ui ui) throws KlalopzException {
         Task currTask = new ToDo(arguments, Boolean.FALSE);
         storage.add(currTask);
         dataStorage.save(storage);
-        System.out.println(addedTask + " \n" + currTask);
-        System.out.println("Now you have " + storage.size() + " tasks in the list.");
-        System.out.println(lineGap);
+
+        ui.showMessage(addedTask + " \n" + currTask);
+        ui.showMessage("Now you have " + storage.size() + " tasks in the list.");
+        ui.showLine();
     }
     @Override
     public boolean doIExit() {

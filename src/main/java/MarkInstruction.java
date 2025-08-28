@@ -11,14 +11,14 @@ public class MarkInstruction implements Instruction {
         this.arguments = arguments;
         this.index = Integer.parseInt(arguments.trim()) - 1;
     }
-    public void execute(List<Task> storage, DataStorage dataStorage) throws KlalopzException {
+    public void execute(List<Task> storage, DataStorage dataStorage, Ui ui) {
 
         Task currTask = storage.get(index);
         currTask.setCompleted(Boolean.TRUE);
         dataStorage.save(storage);
 
-        System.out.println("Well done! I have marked this task:\n" + "[X] " + currTask.getDetails());
-        System.out.println(lineGap);
+        ui.showMessage("Well done! I have marked this task:\n" + "[X] " + currTask.getDetails());
+        ui.showLine();
     }
 
     @Override

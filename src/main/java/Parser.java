@@ -1,4 +1,5 @@
 public class Parser {
+
     public static Instruction parse(String input) throws KlalopzException {
         String[] splitInput = input.split(" ", 2);
         String instruction = splitInput[0];

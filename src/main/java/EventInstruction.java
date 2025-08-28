@@ -16,13 +16,14 @@ public class EventInstruction implements Instruction {
         this.startDate = LocalDate.parse(parts[1].trim(), inputDateFormat);
         this.endDate = LocalDate.parse(parts[2].trim(), inputDateFormat);
     }
-    public void execute(List<Task> storage, DataStorage dataStorage) throws KlalopzException {
+    public void execute(List<Task> storage, DataStorage dataStorage, Ui ui) throws KlalopzException {
         Task currTask = new Event(details, Boolean.FALSE, startDate, endDate);
         storage.add(currTask);
         dataStorage.save(storage);
-        System.out.println(addedTask + " \n" + currTask);
-        System.out.println("Now you have " + storage.size() + " tasks in the list.");
-        System.out.println(lineGap);
+        ui.showMessage(addedTask + " \n" + currTask);
+        ui.showMessage("Now you have " + storage.size() + " tasks in the list.");
+        ui.showLine();
+
     }
     @Override
     public boolean doIExit() {

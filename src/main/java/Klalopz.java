@@ -26,21 +26,18 @@ public class Klalopz {
     public static void main(String[] args) throws KlalopzException {
         Scanner scanner = new Scanner(System.in);
         DataStorage dataStorage = new DataStorage();
-        String[] tempStorage;
-        int index;
-        Task currTask;
+        Ui ui = new Ui();
         List<Task> taskStorage = dataStorage.load();
 
-        System.out.println(lineGap);
-        System.out.println(introMessage);
-        System.out.println(lineGap);
+        ui.sayOpening();
 
         while(true) {
             System.out.println("Your input: ");
             String currInput = scanner.nextLine().trim();
+            ui.showLine();
             try {
                 Instruction instruction = Parser.parse(currInput);
-                instruction.execute(taskStorage, dataStorage);
+                instruction.execute(taskStorage, dataStorage, ui);
                 if (instruction.doIExit()) {
                     break;
                 }
