@@ -25,7 +25,8 @@ public class Event extends Task {
     @Override
     public String serialize() {
         return this.getTaskLogo() + " | "  + this.getDetails() + " | " +
-                this.getCompleted() + " | " + this.getStartDate() + " | " + this.getEndDate();
+                this.getCompleted() + " | " + this.getStartDate().format(Task.dateFormatter)
+                + " | " + this.getEndDate().format(Task.dateFormatter);
     }
 
 

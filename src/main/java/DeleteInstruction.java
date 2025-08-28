@@ -10,13 +10,13 @@ public class DeleteInstruction implements Instruction {
         this.arguments = arguments;
         this.index = Integer.parseInt(arguments.trim()) - 1;
     }
-    public void execute(List<Task> storage, DataStorage dataStorage, Ui ui) throws KlalopzException {
+    public void execute(TaskList storage, DataStorage dataStorage, Ui ui) throws KlalopzException {
         if (index < 0 || index >= storage.size()) {
             throw new KlalopzException("Index is out of bounds");
         }
 
-        Task currTask = storage.get(index);
-        storage.remove(index);
+        Task currTask = storage.getTask(index);
+        storage.removeTask(index);
         dataStorage.save(storage);
 
         ui.showMessage("Removed item : " + currTask);

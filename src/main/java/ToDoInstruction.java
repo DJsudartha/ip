@@ -9,9 +9,9 @@ public class ToDoInstruction implements Instruction {
         }
         this.arguments = arguments.trim();
     }
-    public void execute(List<Task> storage, DataStorage dataStorage, Ui ui) throws KlalopzException {
+    public void execute(TaskList storage, DataStorage dataStorage, Ui ui) throws KlalopzException {
         Task currTask = new ToDo(arguments, Boolean.FALSE);
-        storage.add(currTask);
+        storage.addTask(currTask);
         dataStorage.save(storage);
 
         ui.showMessage(addedTask + " \n" + currTask);

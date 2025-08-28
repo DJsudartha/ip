@@ -27,7 +27,7 @@ public class Klalopz {
         Scanner scanner = new Scanner(System.in);
         DataStorage dataStorage = new DataStorage();
         Ui ui = new Ui();
-        List<Task> taskStorage = dataStorage.load();
+        TaskList taskList = new TaskList(dataStorage.load());
 
         ui.sayOpening();
 
@@ -37,7 +37,7 @@ public class Klalopz {
             ui.showLine();
             try {
                 Instruction instruction = Parser.parse(currInput);
-                instruction.execute(taskStorage, dataStorage, ui);
+                instruction.execute(taskList, dataStorage, ui);
                 if (instruction.doIExit()) {
                     break;
                 }

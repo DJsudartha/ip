@@ -11,9 +11,9 @@ public class MarkInstruction implements Instruction {
         this.arguments = arguments;
         this.index = Integer.parseInt(arguments.trim()) - 1;
     }
-    public void execute(List<Task> storage, DataStorage dataStorage, Ui ui) {
+    public void execute(TaskList storage, DataStorage dataStorage, Ui ui) {
 
-        Task currTask = storage.get(index);
+        Task currTask = storage.getTask(index);
         currTask.setCompleted(Boolean.TRUE);
         dataStorage.save(storage);
 

@@ -41,9 +41,9 @@ public class DataStorage {
     }
 
     // Taken from https://www.javaguides.net/2025/02/top-10-best-practices-for-file-handling-in-java.html
-    public void save(List<Task> tasks) {
+    public void save(TaskList tasks) {
         try (BufferedWriter writer = Files.newBufferedWriter(filePath)) {
-            for (Task task : tasks) {
+            for (Task task : tasks.getAll()) {
                 writer.write(task.serialize());
                 writer.newLine();
             }

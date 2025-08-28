@@ -16,9 +16,9 @@ public class EventInstruction implements Instruction {
         this.startDate = LocalDate.parse(parts[1].trim(), inputDateFormat);
         this.endDate = LocalDate.parse(parts[2].trim(), inputDateFormat);
     }
-    public void execute(List<Task> storage, DataStorage dataStorage, Ui ui) throws KlalopzException {
+    public void execute(TaskList storage, DataStorage dataStorage, Ui ui) throws KlalopzException {
         Task currTask = new Event(details, Boolean.FALSE, startDate, endDate);
-        storage.add(currTask);
+        storage.addTask(currTask);
         dataStorage.save(storage);
         ui.showMessage(addedTask + " \n" + currTask);
         ui.showMessage("Now you have " + storage.size() + " tasks in the list.");

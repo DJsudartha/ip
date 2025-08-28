@@ -18,9 +18,9 @@
             this.details = tempStorage[0].trim();
             this.dueDate = LocalDate.parse(tempStorage[1].trim(), inputDateFormat);
         }
-        public void execute(List<Task> storage, DataStorage dataStorage, Ui ui) throws KlalopzException {
+        public void execute(TaskList storage, DataStorage dataStorage, Ui ui) throws KlalopzException {
             Task currTask = new Deadline(details, Boolean.FALSE, dueDate);
-            storage.add(currTask);
+            storage.addTask(currTask);
             dataStorage.save(storage);
             ui.showMessage(addedTask + " \n" + currTask);
             ui.showMessage("Now you have " + storage.size() + " tasks in the list.");
