@@ -1,9 +1,9 @@
-package Klalopz.Instructions;
+package klalopz.instructions;
 
-import Klalopz.Storage.DataStorage;
-import Klalopz.Exceptions.KlalopzException;
-import Klalopz.Tasks.TaskList;
-import Klalopz.Ui.TextUi;
+import klalopz.storage.DataStorage;
+import klalopz.exceptions.KlalopzException;
+import klalopz.tasks.TaskList;
+import klalopz.ui.TextUi;
 
 public class ExitInstruction implements Instruction {
     @Override

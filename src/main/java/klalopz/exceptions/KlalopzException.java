@@ -1,4 +1,4 @@
-package Klalopz.Exceptions;
+package klalopz.exceptions;
 
 public class KlalopzException extends Exception {
     public KlalopzException(String message) {
@@ -7,8 +7,8 @@ public class KlalopzException extends Exception {
 
     @Override
     public String toString() {
-        return "    ____________________________________________________________\n"
+        return "____________________________________________________________\n"
                 + "     " + this.getMessage() + "\n"
-                + "    ____________________________________________________________";
+                + "____________________________________________________________";
     }
 }

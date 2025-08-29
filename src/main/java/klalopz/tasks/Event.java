@@ -1,4 +1,4 @@
-package Klalopz.Tasks;
+package klalopz.tasks;
 
 import java.time.LocalDate;
 
@@ -20,15 +20,15 @@ public class Event extends Task {
     @Override
     public String toString() {
         return this.getTaskLogo() + this.getCompletedLogo() + " " + this.getDetails()
-                + " (from: " + this.getStartDate().format(Task.dateFormatter)
-                + " to: " + this.getEndDate().format(Task.dateFormatter) + ")";
+                + " (from: " + this.getStartDate().format(Task.DATE_FORMATTER)
+                + " to: " + this.getEndDate().format(Task.DATE_FORMATTER) + ")";
     }
 
     @Override
     public String serialize() {
         return this.getTaskLogo() + " | "  + this.getDetails() + " | " +
-                this.getCompleted() + " | " + this.getStartDate().format(Task.dateFormatter)
-                + " | " + this.getEndDate().format(Task.dateFormatter);
+                this.getCompleted() + " | " + this.getStartDate().format(Task.DATE_FORMATTER)
+                + " | " + this.getEndDate().format(Task.DATE_FORMATTER);
     }
 
 

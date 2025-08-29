@@ -1,6 +1,6 @@
-package Klalopz.Instructions;
+package klalopz.instructions;
 
-import Klalopz.Exceptions.KlalopzException;
+import klalopz.exceptions.KlalopzException;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertInstanceOf;

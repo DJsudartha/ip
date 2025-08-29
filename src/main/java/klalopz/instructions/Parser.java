@@ -1,6 +1,6 @@
-package Klalopz.Instructions;
+package klalopz.instructions;
 
-import Klalopz.Exceptions.KlalopzException;
+import klalopz.exceptions.KlalopzException;
 
 public class Parser {
 

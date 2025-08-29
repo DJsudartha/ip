@@ -1,4 +1,4 @@
-package Klalopz.Tasks;
+package klalopz.tasks;
 
 import java.time.LocalDate;
 
@@ -17,13 +17,13 @@ public class Deadline extends Task {
     @Override
     public String toString() {
         return this.getTaskLogo() + this.getCompletedLogo() + " " + this.getDetails()
-                + " (by: " + getDueDate().format(Task.dateFormatter) + ")";
+                + " (by: " + getDueDate().format(Task.DATE_FORMATTER) + ")";
     }
 
     @Override
     public String serialize() {
         return this.getTaskLogo() + " | "  + this.getDetails() + " | " +
-                this.getCompleted() + " | " + this.getDueDate().format(Task.dateFormatter);
+                this.getCompleted() + " | " + this.getDueDate().format(Task.DATE_FORMATTER);
     }
     public void setDueDate(LocalDate dueDate) {
         this.dueDate = dueDate;

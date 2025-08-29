@@ -1,7 +1,7 @@
-package Klalopz.Storage;
+package klalopz.storage;
 
-import Klalopz.Tasks.TaskList;
-import Klalopz.Tasks.Task;
+import klalopz.tasks.TaskList;
+import klalopz.tasks.Task;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -21,7 +21,7 @@ public class DataStorage {
         String home = System.getProperty("user.home");
         Path directoryPath;
 
-        directoryPath = Objects.requireNonNullElseGet(path, () -> Paths.get(home, "Klalopz", "data"));
+        directoryPath = Objects.requireNonNullElseGet(path, () -> Paths.get(home, "klalopz", "data"));
 
         this.filePath = directoryPath.resolve("tasks.txt");
 

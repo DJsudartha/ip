@@ -1,11 +1,11 @@
-package Klalopz.Instructions;
+package klalopz.instructions;
 
-import Klalopz.Exceptions.KlalopzException;
-import Klalopz.Storage.DataStorage;
-import Klalopz.Tasks.Event;
-import Klalopz.Tasks.Task;
-import Klalopz.Tasks.TaskList;
-import Klalopz.Ui.TextUi;
+import klalopz.exceptions.KlalopzException;
+import klalopz.storage.DataStorage;
+import klalopz.tasks.Event;
+import klalopz.tasks.Task;
+import klalopz.tasks.TaskList;
+import klalopz.ui.TextUi;
 
 import java.time.LocalDate;
 
