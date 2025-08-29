@@ -28,6 +28,7 @@ public class Parser {
             case "list" -> new ListInstruction();
             case "mark" -> new MarkInstruction(arguments);
             case "unmark" -> new UnmarkInstruction(arguments);
+            case "find" -> new FindInstruction(arguments);
             case "deadline" -> new DeadlineInstruction(arguments);
             case "event" -> new EventInstruction(arguments);
             case "todo" -> new ToDoInstruction(arguments);
