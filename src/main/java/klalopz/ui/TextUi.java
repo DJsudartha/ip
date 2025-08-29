@@ -1,9 +1,9 @@
-package Klalopz.Ui;
+package klalopz.ui;
 
-import Klalopz.Exceptions.KlalopzException;
+import klalopz.exceptions.KlalopzException;
 
 public class TextUi {
-    public static final String botName = "Klalopz";
+    public static final String botName = "klalopz";
     public static final String lineGap = "____________________________________________________________";
     public static final String introMessage = "Hello! I'm " + botName + "!\nWhat can I do for you today?";
     public static final String closingMessage = "Bye-bye, hope to see you soon!";

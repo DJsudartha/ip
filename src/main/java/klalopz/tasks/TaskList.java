@@ -1,6 +1,4 @@
-package Klalopz.Tasks;
-
-import Klalopz.Tasks.Task;
+package klalopz.tasks;
 
 import java.util.ArrayList;
 import java.util.List;

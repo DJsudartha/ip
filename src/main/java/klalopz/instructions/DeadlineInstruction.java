@@ -1,16 +1,15 @@
-package Klalopz.Instructions;
+package klalopz.instructions;
 
-import Klalopz.Exceptions.KlalopzException;
-import Klalopz.Storage.DataStorage;
-import Klalopz.Tasks.Deadline;
-import Klalopz.Tasks.Task;
-import Klalopz.Tasks.TaskList;
-import Klalopz.Ui.TextUi;
+import klalopz.exceptions.KlalopzException;
+import klalopz.storage.DataStorage;
+import klalopz.tasks.Deadline;
+import klalopz.tasks.Task;
+import klalopz.tasks.TaskList;
+import klalopz.ui.TextUi;
 
 import java.time.LocalDate;
 
 public class DeadlineInstruction implements Instruction {
-
         public String arguments;
         private final LocalDate dueDate;
         private final String details;

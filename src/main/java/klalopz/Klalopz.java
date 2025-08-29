@@ -1,19 +1,16 @@
-package Klalopz;
+package klalopz;
 
-import Klalopz.Exceptions.KlalopzException;
-import Klalopz.Instructions.Instruction;
-import Klalopz.Instructions.Parser;
-import Klalopz.Storage.DataStorage;
-import Klalopz.Tasks.Task;
-import Klalopz.Tasks.TaskList;
-import Klalopz.Ui.TextUi;
+import klalopz.exceptions.KlalopzException;
+import klalopz.instructions.Instruction;
+import klalopz.instructions.Parser;
+import klalopz.storage.DataStorage;
+import klalopz.tasks.TaskList;
+import klalopz.ui.TextUi;
 
-import java.time.format.DateTimeFormatter;
-import java.util.List;
 import java.util.Scanner;
 
 public class Klalopz {
-    private static final String botName = "Klalopz";
+    private static final String botName = "klalopz";
     public static void main(String[] args) throws KlalopzException {
         Scanner scanner = new Scanner(System.in);
         DataStorage dataStorage = new DataStorage(null);

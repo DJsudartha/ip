@@ -1,4 +1,4 @@
-package Klalopz.Tasks;
+package klalopz.tasks;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -7,7 +7,7 @@ public class Task {
     private String details;
     private boolean isCompleted;
 
-    public final static DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("d MMM yyyy");
+    public final static DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("d MMM yyyy");
 
     public Task(String details, boolean isCompleted) {
         this.details = details;
@@ -50,9 +50,9 @@ public class Task {
         switch(type) {
             case "[?]": return new Task(detail, isCompleted);
             case "[T]": return new ToDo(detail, isCompleted);
-            case "[D]": return new Deadline(detail, isCompleted, LocalDate.parse(splitData[3], Task.dateFormatter));
-            case "[E]": return new Event(detail, isCompleted, LocalDate.parse(splitData[3], Task.dateFormatter),
-                                         LocalDate.parse(splitData[4], Task.dateFormatter));
+            case "[D]": return new Deadline(detail, isCompleted, LocalDate.parse(splitData[3], Task.DATE_FORMATTER));
+            case "[E]": return new Event(detail, isCompleted, LocalDate.parse(splitData[3], Task.DATE_FORMATTER),
+                                         LocalDate.parse(splitData[4], Task.DATE_FORMATTER));
             default: throw new IllegalArgumentException("Unknown Klalopz.Tasks.Task detected");
         }
     }

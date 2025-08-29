@@ -1,15 +1,13 @@
-package Klalopz.Instructions;
+package klalopz.instructions;
 
-import Klalopz.Exceptions.KlalopzException;
-import Klalopz.Storage.DataStorage;
-import Klalopz.Tasks.Task;
-import Klalopz.Tasks.TaskList;
-import Klalopz.Ui.TextUi;
+import klalopz.exceptions.KlalopzException;
+import klalopz.storage.DataStorage;
+import klalopz.tasks.Task;
+import klalopz.tasks.TaskList;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.nio.file.Path;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
