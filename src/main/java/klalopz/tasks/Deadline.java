@@ -2,8 +2,20 @@ package klalopz.tasks;
 
 import java.time.LocalDate;
 
+/**
+ * Represents a Deadline task with a specific due date.
+ * Inherits from Task and adds a due date.
+ */
 public class Deadline extends Task {
     private LocalDate dueDate;
+
+    /**
+     * Constructs a Deadline task with the given description, completion status, and due date.
+     *
+     * @param description The details of the Deadline task.
+     * @param isCompleted True if the task is completed, false otherwise.
+     * @param dueDate The date by which the task is due.
+     */
     public Deadline(String description, Boolean isCompleted, LocalDate dueDate) {
         super(description, isCompleted);
         this.dueDate = dueDate;

@@ -2,10 +2,23 @@ package klalopz.tasks;
 
 import java.time.LocalDate;
 
+/**
+ * Represents an Event task with a start date and end date.
+ * Inherits from Task and adds date range information.
+ */
 public class Event extends Task {
 
     private LocalDate startDate;
     private LocalDate endDate;
+
+    /**
+     * Constructs an Event task with the given description, completion status, start date, and end date.
+     *
+     * @param description The details of the Event task.
+     * @param isCompleted True if the task is completed, false otherwise.
+     * @param startDate Start date of the event.
+     * @param endDate End date of the event.
+     */
     public Event(String description, Boolean isCompleted, LocalDate startDate, LocalDate endDate) {
         super(description, isCompleted);
         this.startDate = startDate;

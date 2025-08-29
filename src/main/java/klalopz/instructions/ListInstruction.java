@@ -6,6 +6,11 @@ import klalopz.tasks.Task;
 import klalopz.tasks.TaskList;
 import klalopz.ui.TextUi;
 
+/**
+ * Represents an instruction to display all tasks currently in the task list.
+ * When executed, it prints each task with its index, type, completion status, and title.
+ * If the task list is empty, a message is shown to indicate no tasks are present.
+ */
 public class ListInstruction implements Instruction {
 
     @Override

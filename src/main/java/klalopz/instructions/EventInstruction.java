@@ -9,11 +9,24 @@ import klalopz.ui.TextUi;
 
 import java.time.LocalDate;
 
+/**
+ * Represents an instruction to add an event task with a start and end date.
+ */
+
 public class EventInstruction implements Instruction {
     public String arguments;
     private final String details;
     private final LocalDate startDate;
     private final LocalDate endDate;
+
+    /**
+     * Constructs an EventInstruction from the given arguments string.
+     * The expected format is "description / startDate / endDate", where dates
+     * follow the {inputDateFormat}.
+     *
+     * @param arguments Input string containing the event details and dates.
+     * @throws KlalopzException If the arguments do not contain a description, start date, or end date.
+     */
     public EventInstruction(String arguments) throws KlalopzException {
         this.arguments = arguments;
         String[] parts = arguments.split("/", 3);
@@ -24,6 +37,7 @@ public class EventInstruction implements Instruction {
         this.startDate = LocalDate.parse(parts[1].trim(), inputDateFormat);
         this.endDate = LocalDate.parse(parts[2].trim(), inputDateFormat);
     }
+    @Override
     public void execute(TaskList storage, DataStorage dataStorage, TextUi ui) throws KlalopzException {
         Task currTask = new Event(details, Boolean.FALSE, startDate, endDate);
         storage.addTask(currTask);

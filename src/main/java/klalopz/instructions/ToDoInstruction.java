@@ -7,15 +7,28 @@ import klalopz.tasks.TaskList;
 import klalopz.tasks.ToDo;
 import klalopz.ui.TextUi;
 
+/**
+ * Represents an instruction to add a To-Do task without a specific date.
+ */
 public class ToDoInstruction implements Instruction {
 
     public String arguments;
+
+    /**
+     * Constructs a ToDoInstruction with the given arguments.
+     * The argument should contain the description of the To-Do task.
+     *
+     * @param arguments Input string containing the task description.
+     * @throws KlalopzException If the arguments are empty.
+     */
     public ToDoInstruction(String arguments) throws KlalopzException {
         if (arguments.isEmpty()) {
             throw new KlalopzException("Missing arguments");
         }
         this.arguments = arguments.trim();
     }
+
+    @Override
     public void execute(TaskList storage, DataStorage dataStorage, TextUi ui) throws KlalopzException {
         Task currTask = new ToDo(arguments, Boolean.FALSE);
         storage.addTask(currTask);

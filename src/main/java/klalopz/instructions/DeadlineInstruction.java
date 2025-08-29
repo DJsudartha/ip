@@ -9,10 +9,25 @@ import klalopz.ui.TextUi;
 
 import java.time.LocalDate;
 
+/**
+ * Represents a deadline instruction that adds a task with a due date.
+ * The instruction parses an input string to extract task details and the deadline,
+ * and can execute the addition of the task to the task list and storage.
+ */
+
 public class DeadlineInstruction implements Instruction {
         public String arguments;
         private final LocalDate dueDate;
         private final String details;
+        
+        /**
+         * Constructs a DeadlineInstruction from the given arguments string.
+         * The expected format is "description / date", where description is the task
+         * details and date follows the {inputDateFormat}.
+         *
+         * @param arguments Input string containing the task description and due date.
+         * @throws KlalopzException If the arguments do not contain both a description and a date.
+         */
         public DeadlineInstruction(String arguments) throws KlalopzException {
             this.arguments = arguments;
             String[] tempStorage = arguments.split("/", 2);
@@ -24,6 +39,8 @@ public class DeadlineInstruction implements Instruction {
             this.details = tempStorage[0].trim();
             this.dueDate = LocalDate.parse(tempStorage[1].trim(), Instruction.inputDateFormat);
         }
+
+        @Override
         public void execute(TaskList storage, DataStorage dataStorage, TextUi textUi) throws KlalopzException {
             Task currTask = new Deadline(details, Boolean.FALSE, dueDate);
             storage.addTask(currTask);
