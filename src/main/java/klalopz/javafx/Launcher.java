@@ -1,0 +1,13 @@
+package klalopz.javafx;
+
+import javafx.application.Application;
+import klalopz.Klalopz;
+
+/**
+ * A launcher class to workaround classpath issues.
+ */
+public class Launcher {
+    public static void main(String[] args) {
+        Application.launch(Klalopz.class, args);
+    }
+}
