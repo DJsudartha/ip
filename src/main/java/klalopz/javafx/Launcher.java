@@ -8,6 +8,6 @@ import klalopz.Klalopz;
  */
 public class Launcher {
     public static void main(String[] args) {
-        Application.launch(Klalopz.class, args);
+        Application.launch(Main.class, args);
     }
 }
