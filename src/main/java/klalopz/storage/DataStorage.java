@@ -39,7 +39,8 @@ public class DataStorage {
         this.filePath = directoryPath.resolve("tasks.txt");
 
         try {
-            Files.createDirectories(directoryPath); // make sure folders exist
+            Files.createDirectories(directoryPath);
+            assert Files.exists(directoryPath) : "Directory should exist after creation";
         } catch (IOException e) {
             System.out.println("Error creating data directory: " + e.getMessage());
         }
@@ -74,6 +75,7 @@ public class DataStorage {
      **/
     // Taken from https://www.javaguides.net/2025/02/top-10-best-practices-for-file-handling-in-java.html
     public void save(TaskList tasks) {
+        assert tasks != null : "TaskList should not be null before saving";
         try (BufferedWriter writer = Files.newBufferedWriter(filePath)) {
             for (Task task : tasks.getAll()) {
                 writer.write(task.serialize());

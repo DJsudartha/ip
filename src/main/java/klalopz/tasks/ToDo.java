@@ -15,6 +15,8 @@ public class ToDo extends Task {
      */
     public ToDo(String description, Boolean isCompleted) {
         super(description, isCompleted);
+
+        assert description != null && !description.isBlank() : "Description must not be null or blank";
     }
 
     @Override

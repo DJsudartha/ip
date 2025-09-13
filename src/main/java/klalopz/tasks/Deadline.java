@@ -18,6 +18,10 @@ public class Deadline extends Task {
      */
     public Deadline(String description, Boolean isCompleted, LocalDate dueDate) {
         super(description, isCompleted);
+
+        assert description != null && !description.isBlank() : "Description must not be null or blank";
+        assert dueDate != null : "Due date must not be null";
+
         this.dueDate = dueDate;
     }
 
