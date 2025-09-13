@@ -45,6 +45,7 @@ public class DeadlineInstruction implements Instruction {
             Task currTask = new Deadline(details, Boolean.FALSE, dueDate);
             storage.addTask(currTask);
             dataStorage.save(storage);
+
             textUi.showMessage(Instruction.addedTask + " \n" + currTask);
             textUi.showMessage("Now you have " + storage.size() + " tasks in the list.");
             textUi.showLine();

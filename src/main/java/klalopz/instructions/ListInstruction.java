@@ -20,7 +20,7 @@ public class ListInstruction implements Instruction {
         } else {
             ui.showMessage("No | Task type | Completed? | Title");
             ui.showMessage("-----------------------------------");
-            // Formatting TO DO
+
             for (int i = 0; i < storage.size(); i++) {
                 Task currTask = storage.getTask(i);
                 ui.showMessage((i + 1) + ". " + currTask);

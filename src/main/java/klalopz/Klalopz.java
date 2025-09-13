@@ -9,10 +9,7 @@ import klalopz.storage.DataStorage;
 import klalopz.tasks.TaskList;
 import klalopz.ui.TextUi;
 
-import java.util.Scanner;
-
 public class Klalopz {
-    private static final String botName = "klalopz";
     private final DataStorage dataStorage;
     private final TextUi textUi;
     private final TaskList taskList;
@@ -20,29 +17,6 @@ public class Klalopz {
         this.dataStorage = new DataStorage(null);
         this.textUi = new TextUi();
         this.taskList = new TaskList(dataStorage.load());
-    }
-    public static void main(String[] args) throws KlalopzException {
-        Scanner scanner = new Scanner(System.in);
-        DataStorage dataStorage = new DataStorage(null);
-        TextUi textUi = new TextUi();
-        TaskList taskList = new TaskList(dataStorage.load());
-
-        textUi.sayOpening();
-
-        while(true) {
-            System.out.println("Your input: ");
-            String currInput = scanner.nextLine().trim();
-            textUi.showLine();
-            try {
-                Instruction instruction = Parser.parse(currInput);
-                instruction.execute(taskList, dataStorage, textUi);
-                if (instruction.doIExit()) {
-                    break;
-                }
-            } catch (KlalopzException e) {
-                System.out.println("Error: " + e.getMessage());
-            }
-        }
     }
 
     /**

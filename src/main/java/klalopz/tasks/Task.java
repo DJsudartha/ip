@@ -79,14 +79,14 @@ public class Task {
         boolean isCompleted = Boolean.parseBoolean(splitData[2]);
 
 
-        switch(type) {
-            case "[?]": return new Task(detail, isCompleted);
-            case "[T]": return new ToDo(detail, isCompleted);
-            case "[D]": return new Deadline(detail, isCompleted, LocalDate.parse(splitData[3], Task.DATE_FORMATTER));
-            case "[E]": return new Event(detail, isCompleted, LocalDate.parse(splitData[3], Task.DATE_FORMATTER),
-                                         LocalDate.parse(splitData[4], Task.DATE_FORMATTER));
-            default: throw new IllegalArgumentException("Unknown Klalopz.Tasks.Task detected");
-        }
+        return switch (type) {
+            case "[?]" -> new Task(detail, isCompleted);
+            case "[T]" -> new ToDo(detail, isCompleted);
+            case "[D]" -> new Deadline(detail, isCompleted, LocalDate.parse(splitData[3], Task.DATE_FORMATTER));
+            case "[E]" -> new Event(detail, isCompleted, LocalDate.parse(splitData[3], Task.DATE_FORMATTER),
+                    LocalDate.parse(splitData[4], Task.DATE_FORMATTER));
+            default -> throw new IllegalArgumentException("Unknown Klalopz.Tasks.Task detected");
+        };
     }
 
     @Override

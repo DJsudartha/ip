@@ -22,6 +22,7 @@ public class FindInstruction implements Instruction {
         ui.showMessage("Tasks containing " +  arguments + ":");
         for (int i = 0; i < storage.size(); i++) {
             Task task = storage.getTask(i);
+
             if (task.getDetails().toLowerCase().contains(arguments.toLowerCase())) {
                 ui.showMessage((i + 1) + ". " + task);
                 areAnyWordsFound = true;

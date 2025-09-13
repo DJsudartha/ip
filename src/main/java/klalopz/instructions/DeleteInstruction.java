@@ -26,6 +26,7 @@ public class DeleteInstruction implements Instruction {
         if (arguments.isEmpty()) {
             throw new KlalopzException("Index is missing");
         }
+
         this.arguments = arguments;
         this.index = Integer.parseInt(arguments.trim()) - 1;
     }
