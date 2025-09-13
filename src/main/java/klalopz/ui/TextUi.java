@@ -2,6 +2,9 @@ package klalopz.ui;
 
 import klalopz.exceptions.KlalopzException;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Handles user interaction by displaying messages, lines, and errors in the console.
  * Provides methods for showing opening and closing messages, generic messages,
@@ -10,18 +13,26 @@ import klalopz.exceptions.KlalopzException;
 
 public class TextUi {
     public static final String botName = "klalopz";
-    public static final String lineGap = "____________________________________________________________";
+    public static final String lineGap = "________________________________________________________";
     public static final String introMessage = "Hello! I'm " + botName + "!\nWhat can I do for you today?";
     public static final String closingMessage = "Bye-bye, hope to see you soon!";
     public static final String errorMessage = "The following error has occurred: ";
+    private final List<String> messages = new ArrayList<>();
 
+    public List<String> getMessages() {
+        return messages;
+    }
+
+    public void clearMessages() {
+        messages.clear();
+    }
     /**
      * Displays the opening message when the application starts,
      * surrounded by divider lines.
      */
     public void sayOpening() {
         showLine();
-        System.out.println(introMessage);
+        messages.add(introMessage);
         showLine();
     }
 
@@ -29,7 +40,7 @@ public class TextUi {
      * Prints a horizontal line to the console for visual separation.
      */
     public void showLine() {
-        System.out.println(lineGap);
+        messages.add(lineGap);
     }
 
     /**
@@ -37,8 +48,8 @@ public class TextUi {
      * followed by a divider line.
      */
     public void sayClosing() {
-        System.out.println(closingMessage);
-        showLine();
+        messages.add(closingMessage);
+        messages.add(lineGap);
     }
 
     /**
@@ -48,7 +59,7 @@ public class TextUi {
      * @throws KlalopzException Always thrown with the provided input.
      */
     public void showHardError(String input) throws KlalopzException {
-        System.out.println(errorMessage);
+        messages.add(errorMessage + input);
         throw new KlalopzException(input);
     }
 
@@ -58,7 +69,7 @@ public class TextUi {
      * @param input The message string to display.
      */
     public void showMessage(String input) {
-        System.out.println(input);
+        messages.add(input);
     }
 
 

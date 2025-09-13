@@ -12,6 +12,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import klalopz.Klalopz;
+import klalopz.exceptions.KlalopzException;
 
 import java.io.IOException;
 
@@ -25,6 +26,10 @@ public class Main extends Application {
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
     private Image klalopzImage = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
     private Klalopz klalopz = new Klalopz();
+
+    public Main() throws KlalopzException {
+    }
+
     @Override
     public void start(Stage stage) {
         try {

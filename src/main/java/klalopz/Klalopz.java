@@ -1,5 +1,6 @@
 package klalopz;
 
+import javafx.application.Platform;
 import klalopz.exceptions.KlalopzException;
 import klalopz.instructions.Instruction;
 import klalopz.instructions.Parser;
@@ -12,6 +13,14 @@ import java.util.Scanner;
 
 public class Klalopz {
     private static final String botName = "klalopz";
+    private final DataStorage dataStorage;
+    private final TextUi textUi;
+    private final TaskList taskList;
+    public Klalopz() throws KlalopzException {
+        this.dataStorage = new DataStorage(null);
+        this.textUi = new TextUi();
+        this.taskList = new TaskList(dataStorage.load());
+    }
     public static void main(String[] args) throws KlalopzException {
         Scanner scanner = new Scanner(System.in);
         DataStorage dataStorage = new DataStorage(null);
@@ -40,7 +49,23 @@ public class Klalopz {
      * Generates a response for the user's chat message.
      */
     public String getResponse(String input) {
-        return "Klalopz heard: " + input;
+        try {
+            Instruction currInstruction = Parser.parse(input);
+            currInstruction.execute(taskList, dataStorage, textUi);
+
+            String response = String.join("\n", textUi.getMessages());
+            if (currInstruction.doIExit()) {
+                Platform.exit();
+                System.exit(0);
+            }
+            return response;
+
+
+        } catch (KlalopzException e) {
+            throw new RuntimeException(e);
+        } finally {
+            textUi.clearMessages();
+        }
     }
 
 }
