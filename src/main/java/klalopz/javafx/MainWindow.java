@@ -9,6 +9,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import klalopz.Klalopz;
+import klalopz.ui.TextUi;
 
 public class MainWindow extends AnchorPane {
     @FXML
@@ -22,9 +23,15 @@ public class MainWindow extends AnchorPane {
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
     private Image klalopzImage = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
     private Klalopz klalopz;
+    private TextUi textUi = new TextUi();
 
     @FXML
     public void initialize() {
+        textUi.sayOpening();
+        String fullOpeningMessage = String.join("\n", textUi.getMessages());
+        dialogContainer.getChildren().add(DialogBox.getKlalopzDialog(fullOpeningMessage, klalopzImage));
+
+        textUi.clearMessages();
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
     }
 

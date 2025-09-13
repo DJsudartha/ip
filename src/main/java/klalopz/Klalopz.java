@@ -49,9 +49,12 @@ public class Klalopz {
      * Generates a response for the user's chat message.
      */
     public String getResponse(String input) {
+        assert input != null : "Input should not be empty";
         try {
             Instruction currInstruction = Parser.parse(input);
             currInstruction.execute(taskList, dataStorage, textUi);
+
+            assert !textUi.getMessages().isEmpty() : "TextUi should have a message after executing";
 
             String response = String.join("\n", textUi.getMessages());
             if (currInstruction.doIExit()) {

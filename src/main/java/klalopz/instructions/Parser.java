@@ -20,8 +20,12 @@ public class Parser {
      *                          or if required arguments are missing.
      */
     public static Instruction parse(String input) throws KlalopzException {
+        assert input != null : "Input string should not be null";
+
         String[] splitInput = input.split(" ", 2);
         String instruction = splitInput[0];
+        assert !instruction.isBlank() : "Command keyword must not be blank";
+
         String arguments = splitInput.length > 1 ?  splitInput[1] : "";
 
         return switch (instruction.toLowerCase().trim()) {
