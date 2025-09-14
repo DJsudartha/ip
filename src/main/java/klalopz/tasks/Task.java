@@ -1,5 +1,7 @@
 package klalopz.tasks;
 
+import klalopz.enums.Tag;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -10,11 +12,13 @@ import java.time.format.DateTimeFormatter;
 public class Task {
     private String details;
     private boolean isCompleted;
+    private Tag tag;
+    private static final String EMPTY_TAG_ID = "-1";
 
     public final static DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("d MMM yyyy");
 
     /**
-     * Constructs a Task with the given description and completion status.
+     * Constructs a Task with the given description, completion status and a default tag of NONE.
      *
      * @param details The description of the task.
      * @param isCompleted True if the task is completed, false otherwise.
@@ -22,6 +26,7 @@ public class Task {
     public Task(String details, boolean isCompleted) {
         this.details = details;
         this.isCompleted = isCompleted;
+        this.tag = Tag.NONE;
     }
 
     /**
@@ -63,7 +68,8 @@ public class Task {
      * @return Serialized string representing the task.
      */
     public String serialize() { return this.getTaskLogo() + " | " +
-                                this.details + " | " + this.isCompleted; }
+                                this.details + " | " + this.isCompleted
+                                + " | " + this.getTag().getId(); }
 
     /**
      * Deserializes a string from storage back into a Task or its subclass.
@@ -74,7 +80,30 @@ public class Task {
      */
     public static Task deserialize(String data) {
         String[] splitData = data.split( " \\| ");
-        String type = splitData[0]; // for example, maybe first part indicates type
+        String type = splitData[0];
+        Task task = getTask(splitData, type);
+
+        int tagIndex = switch (type) {
+            case "[T]", "[?]" -> 3;
+            case "[D]" -> 4;
+            case "[E]" -> 5;
+            default -> -1;
+        };
+
+        if (tagIndex >= 0 && tagIndex < splitData.length) {
+            try {
+                task.setTag(splitData[tagIndex]);
+            } catch (IllegalArgumentException e) {
+                task.setTag(EMPTY_TAG_ID);
+            }
+        } else {
+            task.setTag(EMPTY_TAG_ID);
+        }
+
+        return task;
+    }
+
+    private static Task getTask(String[] splitData, String type) {
         String detail = splitData[1];
         boolean isCompleted = Boolean.parseBoolean(splitData[2]);
 
@@ -85,13 +114,63 @@ public class Task {
             case "[D]" -> new Deadline(detail, isCompleted, LocalDate.parse(splitData[3], Task.DATE_FORMATTER));
             case "[E]" -> new Event(detail, isCompleted, LocalDate.parse(splitData[3], Task.DATE_FORMATTER),
                     LocalDate.parse(splitData[4], Task.DATE_FORMATTER));
-            default -> throw new IllegalArgumentException("Unknown Klalopz.Tasks.Task detected");
+            default -> throw new IllegalArgumentException("Unknown Task detected");
         };
+    }
+
+    public Tag getTag() {
+        return tag;
+    }
+
+    public void setTag(String tagInput) {
+        assert tagInput != null : "Tag input cannot be null";
+
+        Tag parsedTag = Tag.NONE;
+
+        if (isNumberInRange(tagInput, -1, 3)) {
+            int num = Integer.parseInt(tagInput.trim());
+            for (Tag t : Tag.values()) {
+                if (t.getId() == num) {
+                    parsedTag = t;
+                    break;
+                }
+            }
+        } else {
+            // Not a number → try matching by name
+            try {
+                parsedTag = Tag.valueOf(tagInput.toUpperCase().trim());
+            } catch (IllegalArgumentException ignored) {
+                // Neither a valid number nor a valid name → keep Tag.NONE
+            }
+        }
+
+        this.tag = parsedTag;
+    }
+
+
+
+    /**
+     * Checks if the given string is a valid integer within the specified range.
+     *
+     * @param input the string to check
+     * @param min   the minimum allowed value (inclusive)
+     * @param max   the maximum allowed value (inclusive)
+     * @return true if input is a valid integer in range, false otherwise
+     */
+    public static boolean isNumberInRange(String input, int min, int max) {
+        try {
+            int value = Integer.parseInt(input.trim());
+            return value >= min && value <= max;
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
 
     @Override
     public String toString() {
-        return this.getTaskLogo() + this.getCompletedLogo() + " " + this.getDetails();
+        String tagString = (tag != null && tag != Tag.NONE) ? " " + tag : "";
+        return this.getTaskLogo() + this.getCompletedLogo() + " "
+                + this.getDetails() + tagString;
     }
 }
 

@@ -1,5 +1,7 @@
 package klalopz.tasks;
 
+import klalopz.enums.Tag;
+
 import java.time.LocalDate;
 
 /**
@@ -38,16 +40,20 @@ public class Event extends Task {
 
     @Override
     public String toString() {
+        Tag tag = this.getTag();
+        String tagString = (tag != null && tag != Tag.NONE) ? " " + tag : "";
         return this.getTaskLogo() + this.getCompletedLogo() + " " + this.getDetails()
                 + " (from: " + this.getStartDate().format(Task.DATE_FORMATTER)
-                + " to: " + this.getEndDate().format(Task.DATE_FORMATTER) + ")";
+                + " to: " + this.getEndDate().format(Task.DATE_FORMATTER) + ")"
+                + tagString;
     }
 
     @Override
     public String serialize() {
         return this.getTaskLogo() + " | "  + this.getDetails() + " | " +
                 this.getCompleted() + " | " + this.getStartDate().format(Task.DATE_FORMATTER)
-                + " | " + this.getEndDate().format(Task.DATE_FORMATTER);
+                + " | " + this.getEndDate().format(Task.DATE_FORMATTER)
+                + " | " + this.getTag().getId();
     }
 
 

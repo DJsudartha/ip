@@ -19,8 +19,6 @@ public class KlalopzException extends Exception {
 
     @Override
     public String toString() {
-        return "____________________________________________________________\n"
-                + "     " + this.getMessage() + "\n"
-                + "____________________________________________________________";
+        return this.getMessage();
     }
 }

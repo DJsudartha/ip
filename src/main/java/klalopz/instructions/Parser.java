@@ -1,5 +1,6 @@
 package klalopz.instructions;
 
+import klalopz.enums.InstructionKeyword;
 import klalopz.exceptions.KlalopzException;
 
 /**
@@ -28,17 +29,25 @@ public class Parser {
 
         String arguments = splitInput.length > 1 ?  splitInput[1] : "";
 
-        return switch (instruction.toLowerCase().trim()) {
-            case "list" -> new ListInstruction();
-            case "mark" -> new MarkInstruction(arguments);
-            case "unmark" -> new UnmarkInstruction(arguments);
-            case "find" -> new FindInstruction(arguments);
-            case "deadline" -> new DeadlineInstruction(arguments);
-            case "event" -> new EventInstruction(arguments);
-            case "todo" -> new ToDoInstruction(arguments);
-            case "delete", "remove" -> new DeleteInstruction(arguments);
-            case "bye" -> new ExitInstruction();
-            default -> throw new KlalopzException("Invalid instruction");
+        InstructionKeyword keyword;
+        try {
+            keyword = InstructionKeyword.fromString(instruction);
+        } catch (IllegalArgumentException e) {
+            throw new KlalopzException("Invalid instruction");
+        }
+
+        return switch (keyword) {
+            case LIST -> new ListInstruction(); // 0 Arguments
+            case MARK -> new MarkInstruction(arguments); // 1 Argument
+            case UNMARK -> new UnmarkInstruction(arguments); // 1 Argument
+            case FIND -> new FindInstruction(arguments); // 1 Argument
+            case DEADLINE -> new DeadlineInstruction(arguments); // 2 Argument
+            case EVENT -> new EventInstruction(arguments); // 3 Argument
+            case TODO -> new ToDoInstruction(arguments); // 1 Argument
+            case DELETE -> new DeleteInstruction(arguments); // 1 Argument
+            case ADD_TAG -> new SetTagInstruction(arguments); // 2 Arguments
+            case DELETE_TAG -> new DeleteTagInstruction(arguments); // 2 Arguments
+            case EXIT -> new ExitInstruction();
         };
     }
 }

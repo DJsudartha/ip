@@ -1,5 +1,7 @@
 package klalopz.tasks;
 
+import klalopz.enums.Tag;
+
 import java.time.LocalDate;
 
 /**
@@ -32,14 +34,18 @@ public class Deadline extends Task {
 
     @Override
     public String toString() {
+        Tag tag = this.getTag();
+        String tagString = (tag != null && tag != Tag.NONE) ? " " + tag : "";
         return this.getTaskLogo() + this.getCompletedLogo() + " " + this.getDetails()
-                + " (by: " + getDueDate().format(Task.DATE_FORMATTER) + ")";
+                + " (by: " + getDueDate().format(Task.DATE_FORMATTER) + ")"
+                + tagString;
     }
 
     @Override
     public String serialize() {
-        return this.getTaskLogo() + " | "  + this.getDetails() + " | " +
-                this.getCompleted() + " | " + this.getDueDate().format(Task.DATE_FORMATTER);
+        return this.getTaskLogo() + " | "  + this.getDetails() + " | "
+                + this.getCompleted() + " | " + this.getDueDate().format(Task.DATE_FORMATTER)
+                + " | " + this.getTag().getId();
     }
     public void setDueDate(LocalDate dueDate) {
         this.dueDate = dueDate;
