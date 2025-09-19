@@ -19,8 +19,8 @@ public class MainWindow extends AnchorPane {
     private TextField userInput;
     @FXML
     private Button sendButton;
-    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
-    private Image klalopzImage = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
+    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/User.png"));
+    private Image klalopzImage = new Image(this.getClass().getResourceAsStream("/images/Klalopz.jpg"));
     private Klalopz klalopz;
     private TextUi textUi = new TextUi();
 

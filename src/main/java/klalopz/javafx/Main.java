@@ -22,8 +22,6 @@ public class Main extends Application {
     private TextField userInput;
     private Button sendButton;
     private Scene scene;
-    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
-    private Image klalopzImage = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
     private Klalopz klalopz = new Klalopz();
 
     public Main() throws KlalopzException {
@@ -41,15 +39,5 @@ public class Main extends Application {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    private void handleUserInput() {
-        String userText = userInput.getText();
-        String dukeText = klalopz.getResponse(userInput.getText());
-        dialogContainer.getChildren().addAll(
-                DialogBox.getUserDialog(userText, userImage),
-                DialogBox.getKlalopzDialog(dukeText, klalopzImage)
-        );
-        userInput.clear();
     }
 }
