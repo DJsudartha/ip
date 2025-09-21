@@ -47,6 +47,7 @@ application {
 
 shadowJar {
     archiveBaseName = "Klalopz.jar"
+    archiveFileName = "Klalopz.jar"
     archiveClassifier = null
 }
 
