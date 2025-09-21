@@ -14,7 +14,9 @@ import java.util.List;
 public class TextUi {
     public static final String botName = "klalopz";
     public static final String lineGap = "________________________________________________________";
-    public static final String introMessage = "Hello! I'm " + botName + "!\nWhat can I do for you today?";
+    public static final String introMessage = "Hello! I'm " + botName + "!\n" +
+            "What can I do for you today?\n" +
+            "Type 'help' to see all available commands.";
     public static final String closingMessage = "Bye-bye, hope to see you soon!";
     public static final String errorMessage = "The following error has occurred: ";
     private final List<String> messages = new ArrayList<>();

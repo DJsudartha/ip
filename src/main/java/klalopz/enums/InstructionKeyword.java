@@ -14,6 +14,7 @@ public enum InstructionKeyword {
     DELETE,
     ADD_TAG,
     DELETE_TAG,
+    HELP,
     EXIT;
 
     /**
@@ -36,6 +37,7 @@ public enum InstructionKeyword {
             case "delete", "remove" -> DELETE;
             case "add_tag" -> ADD_TAG;
             case "del_tag", "delete_tag", "remove_tag" -> DELETE_TAG;
+            case "help" -> HELP;
             case "bye" -> EXIT;
             default -> throw new IllegalArgumentException("Invalid instruction: " + input);
         };

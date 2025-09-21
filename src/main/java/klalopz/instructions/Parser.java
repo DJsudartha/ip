@@ -125,6 +125,8 @@ public class Parser {
                 yield new DeleteTagInstruction(arguments); // 2 Arguments
             }
 
+            case HELP -> new HelpInstruction();
+
             case EXIT -> new ExitInstruction();
         };
 
