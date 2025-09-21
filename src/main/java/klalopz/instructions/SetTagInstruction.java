@@ -1,5 +1,6 @@
 package klalopz.instructions;
 
+import klalopz.enums.Tag;
 import klalopz.exceptions.KlalopzException;
 import klalopz.storage.DataStorage;
 import klalopz.tasks.Task;
@@ -20,7 +21,9 @@ public class SetTagInstruction implements Instruction {
     @Override
     public void execute(TaskList storage, DataStorage dataStorage, TextUi textUi) {
         Task currTask = storage.getTask(index);
+
         currTask.setTag(tag);
+
         dataStorage.save(storage);
 
         textUi.showMessage("I have added this tag to the following task:\n" + currTask);

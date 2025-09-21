@@ -44,7 +44,4 @@ public class Klalopz {
             textUi.clearMessages();
         }
     }
-
-    // THIS CHANGE IS ONLY FOR COMPLETING THE MERGING-PRs
-    // Change-2
 }

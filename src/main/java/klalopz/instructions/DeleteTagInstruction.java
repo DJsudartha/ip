@@ -20,7 +20,7 @@ public class DeleteTagInstruction implements Instruction {
         currTask.setTag(EMPTY_TAG_ID);
         dataStorage.save(storage);
 
-        textUi.showMessage("I have added this tag to the following task:\n" + currTask);
+        textUi.showMessage("I have deleted this tag to the following task:\n" + currTask);
         textUi.showLine();
 
     }

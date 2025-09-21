@@ -124,24 +124,15 @@ public class Task {
 
     public void setTag(String tagInput) {
         assert tagInput != null : "Tag input cannot be null";
+        tagInput = tagInput.trim();
 
         Tag parsedTag = Tag.NONE;
 
-        if (isNumberInRange(tagInput, -1, 3)) {
-            int num = Integer.parseInt(tagInput.trim());
-            for (Tag t : Tag.values()) {
-                if (t.getId() == num) {
-                    parsedTag = t;
-                    break;
-                }
-            }
-        } else {
-            // Not a number → try matching by name
-            try {
-                parsedTag = Tag.valueOf(tagInput.toUpperCase().trim());
-            } catch (IllegalArgumentException ignored) {
-                // Neither a valid number nor a valid name → keep Tag.NONE
-            }
+        try {
+            int id = Integer.parseInt(tagInput);
+            parsedTag = Tag.fromId(id);
+        } catch (NumberFormatException ignored) {
+            parsedTag = Tag.fromName(tagInput);
         }
 
         this.tag = parsedTag;
