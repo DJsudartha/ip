@@ -19,24 +19,24 @@ public class MarkInstruction implements Instruction {
      * The argument should be the 1-based index of the task to mark as completed.
      *
      * @param arguments Input string containing the task index to mark.
-     * @throws KlalopzException If the arguments are empty or invalid.
      */
-    public MarkInstruction(String arguments) throws KlalopzException {
-        if (arguments.isEmpty()) {
-            throw new KlalopzException("Tell me which task to mark");
-        }
+    public MarkInstruction(String arguments) {
         this.arguments = arguments;
         this.index = Integer.parseInt(arguments.trim()) - 1;
     }
 
     @Override
     public void execute(TaskList storage, DataStorage dataStorage, TextUi ui) {
+        if (index < 0 || index >= storage.size()) {
+            ui.showMessage("Klalopz can't find the task :(");
+            return;
+        }
 
         Task currTask = storage.getTask(index);
         currTask.setCompleted(Boolean.TRUE);
         dataStorage.save(storage);
 
-        ui.showMessage("Well done! I have marked this task:\n" + "[X] " + currTask.getDetails());
+        ui.showMessage("Well done! Klalopz has marked this task:\n" + "[X] " + currTask.getDetails());
         ui.showLine();
     }
 

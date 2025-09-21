@@ -36,11 +36,4 @@ class EventInstructionTest {
         // or you can add getters in EventInstruction for testing
         assertNotNull(instr);
     }
-
-    @Test
-    void constructor_invalidInput_throwsException() {
-        assertThrows(KlalopzException.class, () -> {
-            new EventInstruction("birthday party"); // missing date part
-        });
-    }
 }

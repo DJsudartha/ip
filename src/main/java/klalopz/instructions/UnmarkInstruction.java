@@ -20,28 +20,24 @@ public class UnmarkInstruction implements Instruction {
      * The argument should be the 1-based index of the task to unmark.
      *
      * @param arguments Input string containing the task index to unmark.
-     * @throws KlalopzException If the arguments are empty or invalid.
      */
-    public UnmarkInstruction(String arguments) throws KlalopzException {
-
-        if (arguments.isEmpty()) {
-            throw new KlalopzException("Missing Index");
-        }
+    public UnmarkInstruction(String arguments) {
         this.arguments = arguments;
 
         this.index = Integer.parseInt(arguments.trim()) - 1;
     }
     @Override
-    public void execute(TaskList storage, DataStorage dataStorage, TextUi ui) throws KlalopzException {
+    public void execute(TaskList storage, DataStorage dataStorage, TextUi ui) {
         if (index < 0 || index >= storage.size()) {
-            throw new KlalopzException("What even is that task??");
+            ui.showMessage("Klalopz can't find the task :(");
+            return;
         }
 
         Task currTask = storage.getTask(index);
         currTask.setCompleted(Boolean.FALSE);
         dataStorage.save(storage);
 
-        ui.showMessage("Understood! I have unmarked this task:\n" + "[ ] " + currTask.getDetails());
+        ui.showMessage("Understood! Klalopz has unmarked this task:\n" + "[ ] " + currTask.getDetails());
         ui.showLine();
     }
     @Override

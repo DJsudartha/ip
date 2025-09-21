@@ -7,18 +7,15 @@ import klalopz.tasks.TaskList;
 import klalopz.ui.TextUi;
 
 public class DeleteTagInstruction implements Instruction {
-    private int index;
+    private final int index;
     private static final String EMPTY_TAG_ID = "-1";
 
-    public DeleteTagInstruction(String arguments) throws KlalopzException {
-        if (arguments.isEmpty()) {
-            throw new KlalopzException("Missing arguments");
-        }
+    public DeleteTagInstruction(String arguments) {
         this.index = Integer.parseInt(arguments.trim()) - 1;
     }
 
     @Override
-    public void execute(TaskList storage, DataStorage dataStorage, TextUi textUi) throws KlalopzException {
+    public void execute(TaskList storage, DataStorage dataStorage, TextUi textUi) {
         Task currTask = storage.getTask(index);
         currTask.setTag(EMPTY_TAG_ID);
         dataStorage.save(storage);

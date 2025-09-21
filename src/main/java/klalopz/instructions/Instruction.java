@@ -18,7 +18,7 @@ public interface Instruction {
     DateTimeFormatter inputDateFormat = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
     /** Executes the instruction, modifying the task list and storage as needed. */
-    void execute(TaskList storage, DataStorage dataStorage, TextUi textUi) throws KlalopzException;
+    void execute(TaskList storage, DataStorage dataStorage, TextUi textUi);
 
     /** Indicates whether this instruction should terminate the application. */
     boolean doIExit();

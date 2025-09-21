@@ -30,18 +30,4 @@ public class ParserTest {
         Instruction instr = Parser.parse("list");
         assertInstanceOf(ListInstruction.class, instr);
     }
-
-    @Test
-    void parse_invalidCommand_throwsException() {
-        assertThrows(KlalopzException.class, () -> {
-            Parser.parse("nonsense command");
-        });
-    }
-
-    @Test
-    void parse_emptyCommand_throwsException() {
-        assertThrows(KlalopzException.class, () -> {
-            Parser.parse("");
-        });
-    }
 }

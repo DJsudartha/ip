@@ -7,13 +7,10 @@ import klalopz.tasks.TaskList;
 import klalopz.ui.TextUi;
 
 public class SetTagInstruction implements Instruction {
-    private int index;
-    private String tag;
+    private final int index;
+    private final String tag;
 
-    public SetTagInstruction(String arguments) throws KlalopzException {
-        if (arguments.isEmpty()) {
-            throw new KlalopzException("Missing arguments");
-        }
+    public SetTagInstruction(String arguments) {
         String[] splitArguments = arguments.split(" ", 2);
         this.index = Integer.parseInt(splitArguments[0]) - 1;
         this.tag = splitArguments[1];
@@ -21,7 +18,7 @@ public class SetTagInstruction implements Instruction {
     }
 
     @Override
-    public void execute(TaskList storage, DataStorage dataStorage, TextUi textUi) throws KlalopzException {
+    public void execute(TaskList storage, DataStorage dataStorage, TextUi textUi) {
         Task currTask = storage.getTask(index);
         currTask.setTag(tag);
         dataStorage.save(storage);

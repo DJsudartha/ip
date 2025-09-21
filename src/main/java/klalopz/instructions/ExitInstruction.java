@@ -12,7 +12,7 @@ import klalopz.ui.TextUi;
  */
 public class ExitInstruction implements Instruction {
     @Override
-    public void execute(TaskList storage, DataStorage dataStorage, TextUi ui) throws KlalopzException {
+    public void execute(TaskList storage, DataStorage dataStorage, TextUi ui) {
         ui.sayClosing();
     }
 

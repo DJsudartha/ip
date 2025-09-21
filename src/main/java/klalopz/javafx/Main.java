@@ -24,7 +24,7 @@ public class Main extends Application {
     private Scene scene;
     private Klalopz klalopz = new Klalopz();
 
-    public Main() throws KlalopzException {
+    public Main() {
     }
 
     @Override

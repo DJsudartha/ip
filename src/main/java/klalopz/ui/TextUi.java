@@ -53,17 +53,6 @@ public class TextUi {
     }
 
     /**
-     * Displays an error message and throws a KlalopzException with the given input.
-     *
-     * @param input The error details to include in the exception.
-     * @throws KlalopzException Always thrown with the provided input.
-     */
-    public void showHardError(String input) throws KlalopzException {
-        messages.add(errorMessage + input);
-        throw new KlalopzException(input);
-    }
-
-    /**
      * Displays a message to the user.
      *
      * @param input The message string to display.

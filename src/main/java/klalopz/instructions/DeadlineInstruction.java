@@ -26,22 +26,18 @@ public class DeadlineInstruction implements Instruction {
          * details and date follows the {inputDateFormat}.
          *
          * @param arguments Input string containing the task description and due date.
-         * @throws KlalopzException If the arguments do not contain both a description and a date.
          */
-        public DeadlineInstruction(String arguments) throws KlalopzException {
+        public DeadlineInstruction(String arguments) {
             this.arguments = arguments;
             String[] tempStorage = arguments.split("/", 2);
 
-            if (tempStorage.length < 2) {
-                throw new KlalopzException("FOLLOW THE FORMAT!!!! (title / date))");
-            }
 
             this.details = tempStorage[0].trim();
             this.dueDate = LocalDate.parse(tempStorage[1].trim(), Instruction.inputDateFormat);
         }
 
         @Override
-        public void execute(TaskList storage, DataStorage dataStorage, TextUi textUi) throws KlalopzException {
+        public void execute(TaskList storage, DataStorage dataStorage, TextUi textUi) {
             Task currTask = new Deadline(details, Boolean.FALSE, dueDate);
             storage.addTask(currTask);
             dataStorage.save(storage);

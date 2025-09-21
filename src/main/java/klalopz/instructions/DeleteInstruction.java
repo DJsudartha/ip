@@ -20,20 +20,16 @@ public class DeleteInstruction implements Instruction {
      * The argument should be the 1-based index of the task to delete.
      *
      * @param arguments Input string containing the task index to delete.
-     * @throws KlalopzException If the arguments are empty or not a valid number.
      */
-    public DeleteInstruction(String arguments) throws KlalopzException {
-        if (arguments.isEmpty()) {
-            throw new KlalopzException("Index is missing");
-        }
+    public DeleteInstruction(String arguments) {
 
         this.arguments = arguments;
         this.index = Integer.parseInt(arguments.trim()) - 1;
     }
     @Override
-    public void execute(TaskList storage, DataStorage dataStorage, TextUi ui) throws KlalopzException {
+    public void execute(TaskList storage, DataStorage dataStorage, TextUi ui) {
         if (index < 0 || index >= storage.size()) {
-            throw new KlalopzException("Index is out of bounds");
+            ui.showMessage("Klalopz cannot find this task.");
         }
 
         Task currTask = storage.getTask(index);

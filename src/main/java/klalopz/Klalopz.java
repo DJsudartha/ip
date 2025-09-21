@@ -13,7 +13,7 @@ public class Klalopz {
     private final DataStorage dataStorage;
     private final TextUi textUi;
     private final TaskList taskList;
-    public Klalopz() throws KlalopzException {
+    public Klalopz()  {
         this.dataStorage = new DataStorage(null);
         this.textUi = new TextUi();
         this.taskList = new TaskList(dataStorage.load());
@@ -38,7 +38,7 @@ public class Klalopz {
             return response;
 
 
-        } catch (KlalopzException e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         } finally {
             textUi.clearMessages();

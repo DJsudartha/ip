@@ -14,7 +14,7 @@ import klalopz.ui.TextUi;
 public class ListInstruction implements Instruction {
 
     @Override
-    public void execute(TaskList storage, DataStorage dataStorage, TextUi ui) throws KlalopzException {
+    public void execute(TaskList storage, DataStorage dataStorage, TextUi ui) {
         if (storage.isEmpty()) {
             ui.showMessage("HEY! You haven't added anything yet!");
         } else {

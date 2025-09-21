@@ -27,20 +27,16 @@ public class EventInstruction implements Instruction {
      * @param arguments Input string containing the event details and dates.
      * @throws KlalopzException If the arguments do not contain a description, start date, or end date.
      */
-    public EventInstruction(String arguments) throws KlalopzException {
+    public EventInstruction(String arguments) {
         this.arguments = arguments;
         String[] parts = arguments.split("/", 3);
-
-        if (parts.length < 3) {
-            throw new KlalopzException("FOLLOW THE FORMAT!!!! (title / startDate / endDate)");
-        }
 
         this.details = parts[0].trim();
         this.startDate = LocalDate.parse(parts[1].trim(), inputDateFormat);
         this.endDate = LocalDate.parse(parts[2].trim(), inputDateFormat);
     }
     @Override
-    public void execute(TaskList storage, DataStorage dataStorage, TextUi ui) throws KlalopzException {
+    public void execute(TaskList storage, DataStorage dataStorage, TextUi ui) {
         Task currTask = new Event(details, Boolean.FALSE, startDate, endDate);
         storage.addTask(currTask);
         dataStorage.save(storage);
