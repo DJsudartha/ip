@@ -4,7 +4,7 @@
 
 Look no further than Klalopz, the digital turtle to help note and easily find your needs.
 
-![Example of Klalopz usage](docs/Ui.png)
+![Example of Klalopz usage](../docs/Ui.png)
 
 ## Adding Tasks
 
