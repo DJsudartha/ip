@@ -36,7 +36,7 @@ public class DeleteInstruction implements Instruction {
         storage.removeTask(index);
         dataStorage.save(storage);
 
-        ui.showMessage("Removed item : " + currTask);
+        ui.showMessage("Klalopz has removed item : " + currTask);
         ui.showMessage("Now you have " + storage.size() + " tasks in the list.");
         ui.showLine();
     }

@@ -32,8 +32,10 @@ public class Klalopz {
 
             String response = String.join("\n", textUi.getMessages());
             if (currInstruction.doIExit()) {
-                Platform.exit();
-                System.exit(0);
+                Platform.runLater(() -> {
+                    Platform.exit();
+                    System.exit(0);
+                });
             }
             return response;
 

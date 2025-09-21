@@ -14,7 +14,7 @@ import java.time.format.DateTimeFormatter;
  */
 public interface Instruction {
 
-    String addedTask = "Got it. I've added this task: ";
+    String addedTask = "Klalopz has added this task: ";
     DateTimeFormatter inputDateFormat = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
     /** Executes the instruction, modifying the task list and storage as needed. */

@@ -18,8 +18,8 @@ public class ListInstruction implements Instruction {
         if (storage.isEmpty()) {
             ui.showMessage("HEY! You haven't added anything yet!");
         } else {
-            ui.showMessage("No | Task type | Completed? | Title");
-            ui.showMessage("-----------------------------------");
+            ui.showMessage("No [type] [Completed] Title #Tags");
+            ui.showLine();
 
             for (int i = 0; i < storage.size(); i++) {
                 Task currTask = storage.getTask(i);

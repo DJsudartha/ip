@@ -25,7 +25,6 @@ public class EventInstruction implements Instruction {
      * follow the {inputDateFormat}.
      *
      * @param arguments Input string containing the event details and dates.
-     * @throws KlalopzException If the arguments do not contain a description, start date, or end date.
      */
     public EventInstruction(String arguments) {
         this.arguments = arguments;

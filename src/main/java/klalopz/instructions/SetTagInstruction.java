@@ -26,7 +26,7 @@ public class SetTagInstruction implements Instruction {
 
         dataStorage.save(storage);
 
-        textUi.showMessage("I have added this tag to the following task:\n" + currTask);
+        textUi.showMessage("Klalopz has added this tag to the following task:\n" + currTask);
         textUi.showLine();
     }
     @Override

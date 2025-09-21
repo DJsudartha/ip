@@ -16,7 +16,7 @@ public class FindInstruction implements Instruction {
     public void execute(TaskList storage, DataStorage dataStorage, TextUi ui) {
         boolean areAnyWordsFound = false;
 
-        ui.showMessage("Tasks containing " +  arguments + ":");
+        ui.showMessage("Klalopz has found the Tasks containing " +  arguments + ":");
         for (int i = 0; i < storage.size(); i++) {
             Task task = storage.getTask(i);
 
