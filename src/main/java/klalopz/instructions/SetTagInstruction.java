@@ -20,6 +20,10 @@ public class SetTagInstruction implements Instruction {
 
     @Override
     public void execute(TaskList storage, DataStorage dataStorage, TextUi textUi) {
+        if (index < 0 || index >= storage.size()) {
+            textUi.showMessage("Klalopz can't find the task :(");
+            return;
+        }
         Task currTask = storage.getTask(index);
 
         currTask.setTag(tag);

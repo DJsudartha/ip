@@ -36,7 +36,7 @@ public class MarkInstruction implements Instruction {
         currTask.setCompleted(Boolean.TRUE);
         dataStorage.save(storage);
 
-        ui.showMessage("Well done! Klalopz has marked this task:\n" + "[X] " + currTask.getDetails());
+        ui.showMessage("Well done! Klalopz has marked this task:\n" + currTask);
         ui.showLine();
     }
 

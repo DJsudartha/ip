@@ -37,7 +37,7 @@ public class UnmarkInstruction implements Instruction {
         currTask.setCompleted(Boolean.FALSE);
         dataStorage.save(storage);
 
-        ui.showMessage("Understood! Klalopz has unmarked this task:\n" + "[ ] " + currTask.getDetails());
+        ui.showMessage("Understood! Klalopz has unmarked this task:\n" + currTask);
         ui.showLine();
     }
     @Override

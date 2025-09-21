@@ -115,7 +115,20 @@ public class Parser {
                 if (arguments.isEmpty()) {
                     yield new InvalidInstruction("Missing arguments for ADD_TAG");
                 }
-                yield new SetTagInstruction(arguments); // 2 Arguments
+
+                String[] splitArgs = arguments.trim().split(" ", 2); // split into at most 2 parts
+
+                if (splitArgs.length < 2) {
+                    yield new InvalidInstruction("Invalid format! Usage: add_tag {index} {tag_num/name}");
+                }
+
+                String tagPart = splitArgs[1].trim();
+
+                if (tagPart.isEmpty()) {
+                    yield new InvalidInstruction("Tag cannot be empty! Usage: add_tag {index} {tag_num/name}");
+                }
+
+                yield new SetTagInstruction(arguments);
             }
 
             case DELETE_TAG -> {

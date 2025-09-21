@@ -12,6 +12,7 @@ public enum Tag {
     WORK(2),
     URGENT(3),
     HOME(4),
+    SCHOOL(5),
     NONE(-1);
 
     private final int id;
